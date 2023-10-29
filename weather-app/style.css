@@ -9,27 +9,42 @@
     color: rgb(255, 255, 255);
 }
 
-body {
+h2 {
+    display: flex;
+    position: center;
+    margin-left: 8em;
+    width: 100%;
+}
+
+#horaAtual {
+    margin-left: 10px;
+}
+
+#body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: Arial, sans-serif;
+<<<<<<< HEAD
     background-image: url("./background.jpg"); 
     background-size: cover;
     background-position: center;
+=======
+    background: rgba(25, 25, 25, 0.9);
+>>>>>>> e4481ab5278659fb100ddd2fe5fb4069f3f18373
     height: 100vh;
 }
 
-.container {
+#container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 550px;
+    height: 580px;
     width: 800px !important;
     backdrop-filter: blur(1px);
     -webkit-backdrop-filter: blur(1px);
-    background: rgba(25, 25, 25, 0.5);
+    background: rgba(25, 25, 25, 0.9);
     border: 1px solid #fff;
     border-radius: 20px;
     padding: 20px;
@@ -91,12 +106,16 @@ form:active {
     border: 1px solid rgb(25, 80, 184);
 }
 
+.today-left:first-child {
+    margin-bottom: 1em;
+}
+
 #today-time {
     margin-top: 10px;
     width: 95%;
-    height: 200px;
-    opacity: 75%;
-    background-image: url(../cloudypinterest.jpg);
+    height: 250px;
+    background-color: rgba(0, 0, 0, 0.9);
+    opacity: 70%;
     border: 1px solid #fff;
     border-radius: 10px;
     display: flex;
@@ -112,18 +131,29 @@ form:active {
 }
 
 .today-left {
-    width: 50%;
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    margin-top: 1em;
+    font-size: 1.3em;
+    align-self: flex-start;
+
 }
 
 .today-left>h2 {
-    margin-bottom: 40px;
+    margin-bottom: 0px;
 }
+
+/* Estilização do Location (Cidade) 
+.today-left > div > span { 
+    margin: 0 auto;
+} */
 
 .today-right {
     padding-left: 220px;
-    width: 50%;
+    width: 20%;
     display: flex;
-    flex-direction: column;
+    flex-direction:column;
     align-items: center;
 }
 
@@ -132,11 +162,11 @@ form:active {
 }
 
 .today-detail {
-    margin-top: 10px;
+    margin-top:30px;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content:space-around;
     padding: 0 6px;
     color: #fff;
 }
