@@ -33,41 +33,32 @@ const weatherIcons = {
     "50n": "bi bi-cloud-haze-fill"       // Haze (night)
 };
 
-// updateBackground = (temperature) => {  
-//     const element = document.getElementById("today-time");
+updateBackground = () => {  
+    const element = document.body;
+    const image = new Image(300, 300); // Largura (width) e altura (height).
 
-//     if (temperature > 25) {
-//     const image = new Image(300, 300); // Largura (width) e altura (height).
-//     image.src = '../sunny.jpg';
-//     element.style.backgroundImage = `url(${image.src})`;
-//     } else { 
-//         image.src = '../rain.jpg';
-//         element.style.backgroundImage = `url(${image.src})`;
-//     }
-//   }
-
+    if (parseInt(todayTemperature > 20)) {
+    image.src = 'img/sunny.jpg';
+    element.style.backgroundImage = `url(${image.src})`;
+    } else {
+        (todayTemperature < 20)
+        image.src = 'img/rain.jpg';
+        element.style.backgroundImage = `url(${image.src})`;
+    }};
+  
 const fetchData = (city) => {
     // Replace with your API key
     const apiKey = "4dc65a8c1d0614223dda7bd39a7dc5ae";
 
     // Use fetch to make a request to the Weather API
-    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
-    fetch(apiUrl).then(response => {
+    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+    fetch(url).then(response => {
 
         if (!response.ok) {
-            throw new Error("Weather data could not be retrieved.")
-         } else {
-                if (temperature > 25) {
-                    const image = new Image(300, 300); // Largura (width) e altura (height).
-                    image.src = '../sunny.jpg';
-                    element.style.backgroundImage = `url(${image.src})`;
-                    } else { 
-                        image.src = '../rain.jpg';
-                        element.style.backgroundImage = `url(${image.src})`;
-                    }
-                }    
+            throw new Error("Weather data could not be retrieved.");
+         } else {  
             return response.json();
-            }
+    }})
         .then(data => {
             // Update the city name and today's weather information
             todayDay.textContent = new Date().toLocaleDateString("pt-BR", { weekday: "long" });
@@ -107,17 +98,15 @@ const fetchData = (city) => {
 
                     `;
                     futureDays.appendChild(futureDayElement);
-                    //updateBackground(temperature);
                 }
             })
+            updateBackground(todayTemperature);
         })
         .catch((error) => {
             console.error(error);
             // Show an alert to the user in case of an error
             alert("Weather data could not be retrieved.");
-    });
-})
-
+    })};
 
 // Fetch weather data on document load for default city
 document.addEventListener("DOMContentLoaded", function () {
@@ -139,4 +128,6 @@ form.addEventListener("submit", (e) => {
         fetchData(city);
         input.value = "";
     }
-})};
+});
+
+console.log(todayTemperature);
